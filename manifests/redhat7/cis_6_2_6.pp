@@ -20,7 +20,7 @@ class secure_linux_cis::redhat7::cis_6_2_6 (
       content => file('secure_linux_cis/root_path.sh'),
     }
 
-    if $facts['root_path'] {
+    if !$facts['root_path'].empty {
       notify { 'rp':
         message  => 'Not in compliance with CIS 6.2.6 (Scored). There is a "." or other writable directory in the root executable path. Check the root_path fact for details',#lint:ignore:140chars
         loglevel => 'warning',

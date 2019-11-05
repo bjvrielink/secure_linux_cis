@@ -17,7 +17,7 @@ class secure_linux_cis::debian9::cis_1_4_3 (
 
   if $enforced {
 
-    if ($facts['rootpw`'].empty) {
+    if !($facts['rootpw`'].empty) {
 
       notify { 'rootpw':
         message  => 'Not in compliance with CIS 1.4.3 (Scored). No authentication required for single user mode.',#lint:ignore:140chars

@@ -32,13 +32,13 @@ describe 'secure_linux_cis::redhat7::cis_4_1_8' do
                 .with(
                   ensure: 'present',
                   path: '/etc/audit/rules.d/audit.rules',
-                  line: '-w /var/run/faillog -p wa -k logins',
+                  line: '-w /var/log/faillog -p wa -k logins',
                 )
               is_expected.to contain_file_line('audit.rules login/logout 3')
                 .with(
                   ensure: 'present',
                   path: '/etc/audit/rules.d/audit.rules',
-                  line: '-w /var/run/tallylog -p wa -k logins',
+                  line: '-w /var/log/tallylog -p wa -k logins',
                 )
             end
           }

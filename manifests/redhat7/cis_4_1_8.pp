@@ -40,12 +40,12 @@ class secure_linux_cis::redhat7::cis_4_1_8 (
         file_line { 'audit.rules login/logout 2':
           ensure => present,
           path   => '/etc/audit/rules.d/audit.rules',
-          line   => '-w /var/run/faillog -p wa -k logins',
+          line   => '-w /var/log/faillog -p wa -k logins',
         }
         file_line { 'audit.rules login/logout 3':
           ensure => present,
           path   => '/etc/audit/rules.d/audit.rules',
-          line   => '-w /var/run/tallylog -p wa -k logins',
+          line   => '-w /var/log/tallylog -p wa -k logins',
         }
       }
       default: {

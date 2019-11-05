@@ -40,10 +40,13 @@ class secure_linux_cis::redhat7::cis_5_3_1 (
   Integer $lcredit = -1,
 ) {
 
-  $services = [
-    'system-auth',
-    'password-auth',
-  ]
+  $services = $facts['os']['family'] ? {
+    'RedHat' => [
+      'system-auth',
+      'password-auth',
+    ],
+    'Debian' => ['common-password'],
+  }
 
   if $enforced {
 

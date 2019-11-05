@@ -41,5 +41,8 @@ class secure_linux_cis::redhat7::cis_4_1_2 (
       enable => true,
     }
 
+    # Make sure package is installed before configuration is adjusted
+    Package[$package] -> File_line <| path == '/etc/audit/auditd.conf' |>
+
   }
 }

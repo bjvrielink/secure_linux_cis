@@ -431,16 +431,16 @@ class secure_linux_cis::debian9 (
     lcredit => $lcredit,
   }
 
-  class { '::secure_linux_cis::redhat7::cis_5_3_2':
+  class { '::secure_linux_cis::debian9::cis_5_3_2':
     attempts     => $attempts,
     lockout_time => $lockout_time,
   }
 
-  class { '::secure_linux_cis::redhat7::cis_5_3_3':
+  class { '::secure_linux_cis::debian9::cis_5_3_3':
     past_passwords => $past_passwords,
   }
 
-  include ::secure_linux_cis::redhat7::cis_5_3_4
+  include ::secure_linux_cis::debian9::cis_5_3_4
 
   class { '::secure_linux_cis::redhat7::cis_5_4_1_1':
     pass_max_days => $pass_max_days,

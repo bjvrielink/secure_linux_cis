@@ -34,7 +34,7 @@ class secure_linux_cis::redhat7::cis_2_2_11 (
       }
       'Debian': {
         package { 'exim4':
-          ensure => absent,
+          ensure => purged,
         }
       }
       default: {

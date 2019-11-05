@@ -38,7 +38,7 @@ class secure_linux_cis::redhat7::cis_5_4_1_2 (
     $local_users = pick($facts['local_users'], {})
 
     $local_users.each |String $user, Hash $attributes| {
-      if $attributes['password_expires_days'] != 'never' and $attributes['min_days_between_password_change'] != $pass_min_days {
+      if $attributes['min_days_between_password_change'] != $pass_min_days {
         exec { "/usr/bin/chage --mindays ${pass_min_days} ${user}": }
       }
     }

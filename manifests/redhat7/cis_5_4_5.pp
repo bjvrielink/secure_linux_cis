@@ -39,8 +39,8 @@ class secure_linux_cis::redhat7::cis_5_4_5 (
       }
     }
 
-    file_line { 'bashrc_readonly_tmout':
-      path => $bashrc,
+    file_line { 'profile_readonly_tmout':
+      path => '/etc/profile',
       line => 'readonly TMOUT',
     }
   }

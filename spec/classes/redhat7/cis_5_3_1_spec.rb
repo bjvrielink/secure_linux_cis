@@ -48,24 +48,37 @@ describe 'secure_linux_cis::redhat7::cis_5_3_1' do
                 line: 'lcredit = -1',
                 match: '^#?lcredit',
               )
-            is_expected.to contain_pam('pam system-auth requisite')
-              .with(
-                ensure:  'present',
-                service: 'system-auth',
-                type:    'password',
-                control: 'requisite',
-                module:  'pam_pwquality.so',
-                arguments: ['try_first_pass', 'retry=3'],
-              )
-            is_expected.to contain_pam('pam password-auth requisite')
-              .with(
-                ensure:  'present',
-                service: 'password-auth',
-                type:    'password',
-                control: 'requisite',
-                module:  'pam_pwquality.so',
-                arguments: ['try_first_pass', 'retry=3'],
-              )
+            case facts[:osfamily]
+            when 'RedHat'
+              is_expected.to contain_pam('pam system-auth requisite')
+                .with(
+                  ensure:  'present',
+                  service: 'system-auth',
+                  type:    'password',
+                  control: 'requisite',
+                  module:  'pam_pwquality.so',
+                  arguments: ['try_first_pass', 'retry=3'],
+                )
+              is_expected.to contain_pam('pam password-auth requisite')
+                .with(
+                  ensure:  'present',
+                  service: 'password-auth',
+                  type:    'password',
+                  control: 'requisite',
+                  module:  'pam_pwquality.so',
+                  arguments: ['try_first_pass', 'retry=3'],
+                )
+            when 'Debian'
+              is_expected.to contain_pam('pam common-password requisite')
+                .with(
+                  ensure:  'present',
+                  service: 'common-password',
+                  type:    'password',
+                  control: 'requisite',
+                  module:  'pam_pwquality.so',
+                  arguments: ['try_first_pass', 'retry=3'],
+                )
+            end
           }
         else
           it {

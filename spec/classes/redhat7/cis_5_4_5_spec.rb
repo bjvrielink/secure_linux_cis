@@ -23,7 +23,7 @@ describe 'secure_linux_cis::redhat7::cis_5_4_5' do
             end
             is_expected.to contain_file_line('/etc/profile_tmout')
             is_expected.to contain_file_line('/etc/profile_export_tmout')
-            is_expected.to contain_file_line('bashrc_readonly_tmout')
+            is_expected.to contain_file_line('profile_readonly_tmout')
           }
         else
           it {
@@ -33,7 +33,7 @@ describe 'secure_linux_cis::redhat7::cis_5_4_5' do
             is_expected.not_to contain_file_line('/etc/bashrc_export_tmout')
             is_expected.not_to contain_file_line('/etc/bash.bashrc_export_tmout')
             is_expected.not_to contain_file_line('/etc/profile_export_tmout')
-            is_expected.not_to contain_file_line('bashrc_readonly_tmout')
+            is_expected.not_to contain_file_line('profile_readonly_tmout')
           }
         end
       end

@@ -28,7 +28,7 @@ describe 'secure_linux_cis::redhat7::cis_2_2_11' do
             when 'Debian'
               is_expected.to contain_package('exim4')
                 .with(
-                  ensure: 'absent',
+                  ensure: 'purged',
                 )
             end
           }

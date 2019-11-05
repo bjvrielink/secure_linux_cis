@@ -15,16 +15,22 @@ class secure_linux_cis::redhat7::cis_5_4_2 (
   Boolean $enforced = true,
 ) {
 
+  $nologin = $facts['os']['family'] ? {
+    'RedHat' => '/sbin/nologin',
+    'Debian' => '/usr/sbin/nologin',
+  }
+
   if $enforced {
 
     if !empty($facts['nologin']) {
 
       $facts['nologin'].each | String $user | {
         exec { "nologin ${user}":
-          command => "usermod -s /sbin/nologin ${user}",
+          command => "usermod -s ${nologin} ${user}",
           path    => '/sbin/:/usr/sbin',
         }
       }
     }
   }
 }
+# TODO The CIS benchmark also checks for ! in /etc/shadow
