@@ -5,7 +5,7 @@
 Facter.add('gnome_installed') do
   confine osfamily: 'RedHat'
   setcode do
-    Facter::Core::Execution.exec('rpm -qa | grep gnome') != ''
+    Facter::Core::Execution.exec('rpm -qa | grep gnome')
   end
 end
 Facter.add('gnome_installed') do
